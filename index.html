@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ayush Patel: mechanical engineering student at Kennesaw State, CFD researcher in ANSYS Fluent and FAA private pilot. Open to summer 2027 internships.">
+<meta property="og:title" content="Ayush Patel Portfolio">
+<meta property="og:description" content="Tandem-wing CFD research, an industrial reliability project at International Paper, flight training and more.">
+<meta property="og:image" content="img/headshot.webp">
+<title>Ayush Patel Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,600;125,700;125,800;125,900&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: night-flight sheet. A live airflow canvas opens the page, then asymmetric
+   left-weighted sections, each anchored by real photos or Fluent figures. One committed dark look. */
+:root {
+  --night: #0a1728;      /* page ground, night sky over the ramp */
+  --deck: #10223a;       /* raised surfaces */
+  --line: #23395a;       /* hairlines and borders */
+  --text: #eaf1f8;
+  --muted: #9cb0c8;
+  --cyan: #4fcfff;       /* links, focus, interactive */
+  --gold: #ffc23d;       /* KSU gold, used for the few highlights */
+  --paper: #e8eef5;      /* panels behind light Fluent plots */
+  --jet: linear-gradient(90deg, #0000a8, #0050ff, #00c8ff, #3dff9a, #c8ff28, #ffd400, #ff6a00, #c80000);
+  --display: "Archivo", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  --body: "Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
+  --mono: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--night); color: var(--text); font-family: var(--body); font-size: 17px; line-height: 1.6; padding-inline: 0; padding-block: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 24px; }
+@media (max-width: 520px) { .wrap { padding-inline: 16px; } }
+a { color: var(--cyan); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 3px; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.02; text-wrap: balance; }
+h2 { font-stretch: 125%; font-weight: 800; font-size: clamp(34px, 5.4vw, 64px); letter-spacing: -0.01em; }
+h3 { font-stretch: 125%; font-weight: 700; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.15; }
+p { margin: 0; }
+.kicker { color: var(--muted); font-size: 15px; margin-bottom: 14px; }
+.lede { font-size: clamp(18px, 1.7vw, 21px); color: var(--text); max-width: 60ch; }
+.prose { max-width: 64ch; color: var(--muted); }
+.prose strong { color: var(--text); font-weight: 600; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; height: clamp(560px, 82vh, 780px); overflow: hidden; background: var(--night); border-bottom: 1px solid var(--line); }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(10,23,40,.55) 0%, rgba(10,23,40,0) 22%, rgba(10,23,40,0) 48%, rgba(10,23,40,.92) 86%, var(--night) 100%); }
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding-top: env(safe-area-inset-top, 0px); border-bottom: 1px solid transparent; transition: background-color .25s, border-color .25s; }
+.navbar.solid { background: rgba(10,23,40,.9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom-color: var(--line); }
+.navbar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 64px; }
+.nav-right { display: flex; align-items: center; gap: 22px; }
+.avail { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
+.avail i { width: 8px; height: 8px; border-radius: 50%; background: #3ee08f; box-shadow: 0 0 0 3px rgba(62,224,143,.18); }
+.btn.sm { min-height: 44px; padding: 0 16px; font-size: 15px; }
+section[id], #top { scroll-margin-top: 72px; }
+.mark { font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: 15px; letter-spacing: .02em; color: var(--text); text-decoration: none; }
+.navbar nav { display: flex; gap: 4px; }
+.navbar nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; color: var(--text); text-decoration: none; font-size: 15px; opacity: .8; border-radius: 6px; transition: color .15s, opacity .15s; }
+.navbar nav a:hover { opacity: 1; color: var(--cyan); }
+.navbar nav a[aria-current="true"] { opacity: 1; color: var(--cyan); box-shadow: inset 0 -2px 0 var(--cyan); border-radius: 0; }
+.hero-copy { position: absolute; left: 0; right: 0; bottom: 34px; z-index: 2; }
+.hero h1 { font-stretch: 125%; font-weight: 900; font-size: clamp(56px, 12.5vw, 172px); letter-spacing: -0.035em; line-height: .86; }
+.hero h1 span { display: block; }
+.hero-sub { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 18px 40px; margin-top: 22px; }
+.hero-sub p { font-size: clamp(18px, 1.8vw, 22px); max-width: 44ch; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 999px; font: 600 16px/1 var(--body); text-decoration: none; cursor: pointer; border: 1.5px solid var(--text); color: var(--text); background: transparent; transition: background .2s, color .2s, border-color .2s; }
+.btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.btn.solid { background: var(--text); color: var(--night); }
+.btn.solid:hover { background: var(--cyan); border-color: var(--cyan); color: var(--night); }
+.flow-note { position: absolute; z-index: 2; right: 24px; top: calc(92px + env(safe-area-inset-top, 0px)); max-width: 250px; font-size: 13px; color: var(--muted); text-align: right; }
+.flow-note .bar { height: 6px; border-radius: 3px; background: var(--jet); margin-bottom: 8px; }
+
+/* ---------- Readout strip ---------- */
+.readout { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+.readout div { padding: 18px 20px; border-right: 1px solid var(--line); min-width: 0; }
+.readout div:last-child { border-right: 0; }
+.readout dt { font-size: 13px; color: var(--muted); }
+.readout dd { margin: 4px 0 0; font-family: var(--mono); font-size: clamp(17px, 1.8vw, 22px); font-weight: 500; }
+.readout dd small { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+section { padding-block: clamp(72px, 10vw, 128px) 0; }
+
+/* ---------- About ---------- */
+.about { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.headshot { border-radius: 6px; overflow: hidden; aspect-ratio: 1376 / 768; background: #000; }
+.headshot img { width: 100%; height: 100%; object-fit: cover; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 28px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); }
+.facts b { display: block; font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: 30px; color: var(--gold); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.facts span { font-size: 15px; color: var(--muted); }
+
+/* ---------- Research ---------- */
+.sec-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px 56px; align-items: end; }
+.credit { color: var(--muted); font-size: 15px; border-left: 2px solid var(--gold); padding-left: 16px; }
+.contour { margin: 44px 0 0; }
+.contour .frame { border-radius: 6px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 2000 / 716; }
+.contour .frame img { width: 100%; height: 100%; object-fit: cover; }
+.scale { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; margin-top: 14px; font-size: 13px; color: var(--muted); }
+.scale .bar { height: 8px; border-radius: 4px; background: var(--jet); }
+.contour figcaption { margin-top: 12px; color: var(--muted); font-size: 15px; max-width: 80ch; }
+
+.research-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: clamp(28px, 4vw, 56px); margin-top: 64px; }
+.spec { width: 100%; border-collapse: collapse; font-size: 15px; }
+.spec caption { text-align: left; font-family: var(--display); font-stretch: 125%; font-weight: 700; font-size: 20px; margin-bottom: 10px; }
+.spec th, .spec td { text-align: left; padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.spec th { color: var(--muted); font-weight: 400; width: 42%; padding-right: 12px; }
+.spec td { font-family: var(--mono); font-size: 14px; }
+
+.plots h3 { font-size: 20px; margin-bottom: 14px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.tab { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); font: 500 14px/1 var(--body); cursor: pointer; transition: color .15s, border-color .15s, background .15s; }
+.tab:hover { color: var(--text); border-color: var(--muted); }
+.tab[aria-selected="true"] { background: var(--text); border-color: var(--text); color: var(--night); }
+.plot-panel { background: var(--paper); border-radius: 6px; padding: 10px; }
+.plot-panel img { width: 100%; height: auto; border-radius: 3px; }
+.plot-cap { margin-top: 12px; font-size: 15px; color: var(--muted); min-height: 3.2em; }
+
+.findings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; margin-top: 64px; }
+.findings h3 { font-size: 20px; margin-bottom: 8px; }
+.findings ul { list-style: none; margin: 0; padding: 0; }
+.findings li { padding: 14px 0; border-top: 1px solid var(--line); color: var(--muted); }
+.findings li strong { color: var(--text); font-weight: 600; }
+
+/* ---------- Selected work index ---------- */
+.index-list { list-style: none; margin: 36px 0 0; padding: 0; border-bottom: 1px solid var(--line); }
+.index-list a { display: grid; grid-template-columns: 132px minmax(0, 1.1fr) minmax(0, 1fr); gap: 8px 32px; align-items: center; padding: 18px 12px; margin-inline: -12px; border-top: 1px solid var(--line); color: var(--text); text-decoration: none; border-radius: 6px; transition: background-color .2s; }
+.index-list li:first-child a { border-top-color: transparent; }
+.index-list a:hover { background: var(--deck); }
+.index-list a:hover h3 { color: var(--cyan); }
+.index-list .thumb { aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: var(--deck); }
+.index-list .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.index-list .thumb.white { background: #fff; display: grid; place-items: center; }
+.index-list .thumb.white img { width: 72%; height: auto; object-fit: contain; }
+.index-list h3 { font-size: 21px; transition: color .15s; }
+.index-list .role { color: var(--muted); font-size: 15px; margin-top: 6px; }
+.index-list .out { color: var(--text); font-size: 16px; }
+
+/* ---------- Lift chart ---------- */
+.liftchart { margin: 64px 0 0; padding: 24px; background: var(--deck); border-radius: 6px; }
+.liftchart h3 { font-size: 20px; }
+.liftchart svg { width: 100%; height: auto; display: block; margin-top: 12px; }
+.liftchart svg text { font-family: var(--body); }
+.liftchart .bar { fill: var(--cyan); }
+.liftchart .bar.rear { fill: var(--gold); }
+.liftchart g.row:hover .bar, .liftchart g.row:focus .bar { stroke: var(--text); stroke-width: 2; }
+.liftchart g.row:focus { outline: none; }
+.liftchart figcaption { color: var(--muted); font-size: 15px; margin-top: 10px; max-width: 80ch; }
+.chart-wrap { overflow-x: auto; }
+
+/* ---------- Lightbox ---------- */
+.zoom { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; color: inherit; }
+.zoom:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+dialog.lb { border: 0; padding: 0; background: transparent; max-width: min(1400px, 94vw); max-height: 92vh; color: var(--text); }
+dialog.lb::backdrop { background: rgba(5,12,22,.96); }
+dialog.lb img { max-width: 100%; max-height: 80vh; width: auto; margin: 0 auto; border-radius: 6px; background: var(--paper); }
+dialog.lb .lb-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 12px; }
+dialog.lb p { color: var(--muted); font-size: 15px; }
+
+/* ---------- Project rows ---------- */
+.project { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.project.flip { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.project.flip .copy { order: 2; }
+.copy { display: grid; gap: 18px; align-content: start; min-width: 0; }
+.copy ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--muted); }
+.copy ul strong { color: var(--text); font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 13px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+.shot { margin: 0; }
+.shot .ph { border-radius: 6px; overflow: hidden; aspect-ratio: 3 / 4; background: var(--deck); }
+.shot .ph img { width: 100%; height: 100%; object-fit: cover; }
+.shot figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.shot figcaption b { color: var(--text); font-weight: 600; }
+.tag-ba { display: inline-block; font-weight: 600; font-size: 13px; padding: 3px 10px; border-radius: 999px; margin-right: 8px; }
+.tag-ba.before { background: #3a2a1a; color: #ffb36b; }
+.tag-ba.after { background: #123a2c; color: #6df0b6; }
+.pair.stagger .shot:last-child { margin-top: 64px; }
+
+.logbook { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 6px; }
+.logbook div { padding: 14px 16px; border-right: 1px solid var(--line); min-width: 0; }
+.logbook div:last-child { border-right: 0; }
+.logbook dt { font-size: 13px; color: var(--muted); }
+.logbook dd { margin: 4px 0 0; font-family: var(--mono); font-size: 17px; }
+
+.club-logo { background: #fff; border-radius: 6px; display: grid; place-items: center; padding: clamp(20px, 4vw, 40px); }
+.club-logo img { width: min(100%, 340px); height: auto; }
+
+.phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 2vw, 22px); align-items: start; }
+.phone { border-radius: clamp(14px, 2.4vw, 28px); overflow: hidden; border: 1px solid var(--line); aspect-ratio: 560 / 1214; background: #000; box-shadow: 0 30px 60px -30px rgba(0,0,0,.7); }
+.phone img { width: 100%; height: 100%; object-fit: cover; }
+.phones .phone:nth-child(2) { margin-top: 40px; }
+.phones .phone:nth-child(3) { margin-top: 80px; }
+
+/* ---------- Experience & skills ---------- */
+.xp { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+.xp-list { display: grid; }
+.xp-item { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 6px 24px; padding: 20px 0; border-top: 1px solid var(--line); }
+.xp-item .when { font-family: var(--mono); font-size: 14px; color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.xp-item h3 { font-size: 19px; }
+.xp-item p { color: var(--muted); margin-top: 6px; }
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); }
+.skills h3 { font-size: 17px; margin-bottom: 12px; color: var(--gold); }
+.skills ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.edu { margin-top: 56px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 32px; padding: 24px; background: var(--deck); border-radius: 6px; }
+.edu h3 { font-size: 21px; }
+.edu .gpa { font-family: var(--mono); font-size: 15px; text-align: right; }
+.edu p { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
+
+/* ---------- Contact ---------- */
+.contact { padding-block: clamp(72px, 10vw, 120px); }
+.contact h2 { max-width: 16ch; }
+.contact-lines { display: grid; gap: 14px; margin-top: 36px; }
+.cline { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 18px 0; border-top: 1px solid var(--line); }
+.cline .k { color: var(--muted); width: 90px; }
+.cline .v { font-family: var(--mono); font-size: clamp(16px, 2vw, 20px); word-break: break-all; user-select: all; }
+.copy-btn { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--text); font: 500 14px/1 var(--body); cursor: pointer; }
+.copy-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+footer { border-top: 1px solid var(--line); padding-block: 24px 40px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+@media (max-width: 900px) {
+  .about, .sec-head, .research-grid, .project, .project.flip, .xp { grid-template-columns: minmax(0, 1fr); }
+  .project.flip .copy { order: 0; }
+  .findings { grid-template-columns: minmax(0, 1fr); }
+  .readout { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .readout div:nth-child(3) { border-right: 0; }
+  .readout div:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .index-list a { grid-template-columns: 104px minmax(0, 1fr); }
+  .index-list .out { grid-column: 2; font-size: 15px; color: var(--muted); }
+  .flow-note { display: none; }
+  .avail { display: none; }
+}
+@media (max-width: 560px) {
+  .readout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .readout div { border-right: 1px solid var(--line) !important; border-bottom: 1px solid var(--line); }
+  .readout div:nth-child(2n) { border-right: 0 !important; }
+  .readout div:last-child { border-bottom: 0; }
+  .xp-item { grid-template-columns: minmax(0, 1fr); }
+  .index-list a { grid-template-columns: 84px minmax(0, 1fr); gap: 6px 16px; }
+  .index-list h3 { font-size: 18px; }
+  .liftchart { padding: 16px; }
+  .liftchart svg { min-width: 600px; }
+  .skills { grid-template-columns: minmax(0, 1fr); }
+  .logbook { grid-template-columns: minmax(0, 1fr); }
+  .logbook div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .logbook div:last-child { border-bottom: 0; }
+  .pair.stagger .shot:last-child { margin-top: 32px; }
+  .edu { grid-template-columns: minmax(0, 1fr); }
+  .edu .gpa { text-align: left; }
+  .navbar nav { display: none; }
+}
+</style>
+<style>html,body{margin:0}body{-webkit-font-smoothing:antialiased}</style>
+</head>
+<body>
+
+<div class="navbar" id="navbar">
+  <div class="wrap">
+    <a class="mark" href="#top">AYUSH PATEL</a>
+    <nav aria-label="Sections">
+      <a href="#selected">Work</a>
+      <a href="#research">Research</a>
+      <a href="#flight">Flight</a>
+      <a href="#experience">Experience</a>
+    </nav>
+    <div class="nav-right">
+      <span class="avail"><i aria-hidden="true"></i>Open to summer 2027 internships</span>
+      <a class="btn sm solid" href="#contact">Contact me</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <canvas id="flow" aria-hidden="true"></canvas>
+  <p class="flow-note"><span class="bar" style="display:block"></span>Live illustration of two NACA 0012 airfoils in tandem, the setup from my CFD research. Move your cursor through the flow.</p>
+  <div class="hero-copy">
+    <div class="wrap">
+      <h1><span>Ayush</span><span>Patel</span></h1>
+      <div class="hero-sub">
+        <p>Mechanical engineering student at Kennesaw State, CFD researcher and FAA private pilot.</p>
+        <div class="cta">
+          <a class="btn solid" href="#research">See my research</a>
+          <a class="btn" href="https://www.linkedin.com/in/ayushpatel02" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <dl class="readout" aria-label="Quick facts" style="margin:0">
+    <div><dt>GPA</dt><dd>3.83 <small>/ 4.0</small></dd></div>
+    <div><dt>Pilot certificate</dt><dd>Private <small>Aug 2026</small></dd></div>
+    <div><dt>Flight time</dt><dd>75+ <small>hrs</small></dd></div>
+    <div><dt>Research tool</dt><dd>ANSYS Fluent</dd></div>
+    <div><dt>Looking for</dt><dd>Summer 2027</dd></div>
+  </dl>
+</div>
+
+<main>
+  <section class="wrap" id="about" aria-labelledby="about-h">
+    <div class="about">
+      <div class="headshot"><img src="img/headshot.webp" width="1100" height="614" alt="Portrait of Ayush Patel in a grey blazer and white shirt"></div>
+      <div>
+        <h2 id="about-h">Engineering, from the simulation to the cockpit.</h2>
+        <p class="lede" style="margin-top:22px">I study mechanical engineering at Kennesaw State with a focus on aerospace. I simulate wake buffeting on tandem wings in ANSYS Fluent, spent summer 2026 as a reliability engineering intern at International Paper, and fly as an FAA private pilot.</p>
+        <p class="prose" style="margin-top:14px">I'm looking for a summer 2027 internship in aerospace engineering, or in aviation business and operations, where I can connect design work with how aircraft are actually flown.</p>
+        <div class="facts">
+          <div><b>$12K</b><span>Project I led end to end at International Paper</span></div>
+          <div><b>5</b><span>Contractor bids I evaluated and negotiated</span></div>
+          <div><b>1st</b><span>Aviation club at KSU, which I founded</span></div>
+          <div><b>1</b><span>iOS app shipped to the App Store</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="selected" aria-labelledby="selected-h">
+    <h2 id="selected-h">Selected work</h2>
+    <ul class="index-list">
+      <li><a href="#research">
+        <span class="thumb"><img src="img/cfd-velocity.webp" alt="" loading="lazy" style="object-position:22% 50%"></span>
+        <div><h3>Wake-induced buffeting on tandem wings</h3><p class="role">CFD research in ANSYS Fluent, KSU 2026</p></div>
+        <p class="out">Showed that a stalled front wing's wake wipes out the rear wing's lift at one chord of spacing.</p>
+      </a></li>
+      <li><a href="#work">
+        <span class="thumb"><img src="img/pump-after.webp" alt="" loading="lazy"></span>
+        <div><h3>Elephant Pump water filtration</h3><p class="role">Reliability engineering intern, International Paper 2026</p></div>
+        <p class="out">Led a $12K project from scoping through 5 contractor bids to an on-budget install.</p>
+      </a></li>
+      <li><a href="#flight">
+        <span class="thumb"><img src="img/solo-day.webp" alt="" loading="lazy" style="object-position:50% 35%"></span>
+        <div><h3>FAA private pilot</h3><p class="role">Eagles of America, since 2024</p></div>
+        <p class="out">Certificated in August 2026 with 75+ hours. Instrument rating in training.</p>
+      </a></li>
+      <li><a href="#club">
+        <span class="thumb white"><img src="img/club-logo.webp" alt="" loading="lazy"></span>
+        <div><h3>Aviation Club at KSU</h3><p class="role">President and founder, since 2025</p></div>
+        <p class="out">Started the university's first aviation club and wrote its constitution.</p>
+      </a></li>
+      <li><a href="#app">
+        <span class="thumb"><img src="img/riddles-1.webp" alt="" loading="lazy" style="object-position:50% 40%"></span>
+        <div><h3>Tiny Riddles</h3><p class="role">iOS app, React Native and Expo</p></div>
+        <p class="out">Built and shipped an offline-first puzzle app to the App Store.</p>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="wrap" id="research" aria-labelledby="research-h">
+    <div class="sec-head">
+      <div>
+        <p class="kicker">Undergraduate research, Kennesaw State, 2026</p>
+        <h2 id="research-h">Wake-induced buffeting on tandem wings</h2>
+      </div>
+      <p class="credit">A computational study of a tandem NACA 0012 configuration at Re = 2.5 × 10⁵ in ANSYS Fluent. With Musa Baig, mentored by Prof. Gaurav Sharma, as part of KSU's First-Year Undergraduate Research Program.</p>
+    </div>
+    <p class="lede" style="margin-top:32px">When two lifting surfaces fly close together, as in tandem drones or a fighter's tail at high angle of attack, the turbulent wake from the front surface can shake the one behind it. Left unchecked, that buffeting speeds up fatigue and hurts control. We modeled what a stalled front wing's wake does to the wing behind it.</p>
+
+    <figure class="contour">
+      <div class="frame"><img data-zoom src="img/cfd-velocity.webp" width="2000" height="716" loading="lazy" alt="ANSYS Fluent velocity magnitude contour showing two airfoils, with a separated wake from the front airfoil impinging on the rear airfoil"></div>
+      <div class="scale mono"><span>0 m/s</span><span class="bar"></span><span>81 m/s</span></div>
+      <figcaption>Velocity magnitude at a spacing of one chord (X/c = 1.0). The stalled front airfoil at α = 14° sheds a wide, slow, separated wake (blue) straight into the rear airfoil, driving cyclic buffeting loads. Flow accelerates to about 81 m/s at both leading edges (red).</figcaption>
+    </figure>
+
+    <div class="research-grid">
+      <table class="spec">
+        <caption>Simulation setup</caption>
+        <tbody>
+          <tr><th scope="row">Solver</th><td>Pressure-based, 2D planar transient</td></tr>
+          <tr><th scope="row">Turbulence model</th><td>Transition SST, curvature correction, Kato-Launder, production limiter</td></tr>
+          <tr><th scope="row">Mesh</th><td>Structured C-H hybrid, boundary-layer inflation, wake refinement</td></tr>
+          <tr><th scope="row">Reynolds number</th><td>250,000</td></tr>
+          <tr><th scope="row">Mach number</th><td>0.12</td></tr>
+          <tr><th scope="row">Angle of attack</th><td>Front 14° (stalled), rear 0°</td></tr>
+          <tr><th scope="row">Chord spacing</th><td>X/c = 1.0</td></tr>
+          <tr><th scope="row">Time step</th><td>Δt = 1×10⁻⁵ s, 0.137 s total flow time</td></tr>
+        </tbody>
+      </table>
+
+      <div class="plots">
+        <h3>Results from Fluent</h3>
+        <div class="tabs" role="tablist" aria-label="Simulation figures">
+          <button class="tab" role="tab" id="t-clb" aria-selected="true" aria-controls="plotpanel" data-i="0">Rear lift</button>
+          <button class="tab" role="tab" id="t-clf" aria-selected="false" aria-controls="plotpanel" data-i="1">Front lift</button>
+          <button class="tab" role="tab" id="t-cdf" aria-selected="false" aria-controls="plotpanel" data-i="2">Front drag</button>
+          <button class="tab" role="tab" id="t-mesh" aria-selected="false" aria-controls="plotpanel" data-i="3">Mesh</button>
+          <button class="tab" role="tab" id="t-res" aria-selected="false" aria-controls="plotpanel" data-i="4">Residuals</button>
+        </div>
+        <div class="plot-panel" id="plotpanel" role="tabpanel" aria-labelledby="t-clb">
+          <img data-zoom id="plotimg" src="img/cfd-cl-back.webp" width="1400" height="726" loading="lazy" alt="Lift coefficient time history for the rear airfoil">
+        </div>
+        <p class="plot-cap" id="plotcap" aria-live="polite">The rear airfoil buffets hard and symmetrically, with C<sub>L</sub> swinging from −0.072 to +0.082 around a near-zero mean. At this spacing the wake wipes out its lift.</p>
+      </div>
+    </div>
+
+    <figure class="liftchart">
+      <h3>How much lift each wing carries</h3>
+      <div class="chart-wrap"><svg viewBox="0 0 720 172" role="group" aria-label="Range of lift coefficient over a shedding cycle for the front and rear airfoils">
+        <line x1="140.0" y1="22" x2="140.0" y2="142" stroke="var(--line)" stroke-width="1"/><text x="140.0" y="162" text-anchor="middle" font-size="12" fill="var(--muted)">−0.10</text><line x1="248.0" y1="22" x2="248.0" y2="142" stroke="var(--line)" stroke-width="1"/><text x="248.0" y="162" text-anchor="middle" font-size="12" fill="var(--muted)">−0.05</text><line x1="356.0" y1="22" x2="356.0" y2="142" stroke="var(--line)" stroke-width="1"/><text x="356.0" y="162" text-anchor="middle" font-size="12" fill="var(--muted)">0</text><line x1="464.0" y1="22" x2="464.0" y2="142" stroke="var(--line)" stroke-width="1"/><text x="464.0" y="162" text-anchor="middle" font-size="12" fill="var(--muted)">0.05</text><line x1="572.0" y1="22" x2="572.0" y2="142" stroke="var(--line)" stroke-width="1"/><text x="572.0" y="162" text-anchor="middle" font-size="12" fill="var(--muted)">0.10</text><line x1="680.0" y1="22" x2="680.0" y2="142" stroke="var(--line)" stroke-width="1"/><text x="680.0" y="162" text-anchor="middle" font-size="12" fill="var(--muted)">0.15</text>
+        <line x1="356.0" y1="22" x2="356.0" y2="142" stroke="var(--text)" stroke-width="1.5"/>
+        <text x="362.0" y="16" font-size="12" fill="var(--text)">zero lift</text>
+        <g class="row" tabindex="0" role="img" aria-label="Front airfoil lift coefficient ranges from 0.103 to 0.133"><title>Front airfoil lift coefficient ranges from 0.103 to 0.133</title>
+      <text x="0" y="57" font-size="14" fill="var(--text)">Front airfoil, α 14°</text>
+      <rect class="bar front" x="578.5" y="42" width="64.8" height="22" rx="4"/>
+      <text x="570.5" y="57" font-size="12" fill="var(--muted)" text-anchor="end">0.103</text>
+      <text x="651.3" y="57" font-size="12" fill="var(--muted)">0.133</text></g>
+        <g class="row" tabindex="0" role="img" aria-label="Rear airfoil lift coefficient ranges from minus 0.072 to 0.082"><title>Rear airfoil lift coefficient ranges from minus 0.072 to 0.082</title>
+      <text x="0" y="113" font-size="14" fill="var(--text)">Rear airfoil, α 0°</text>
+      <rect class="bar rear" x="200.5" y="98" width="332.6" height="22" rx="4"/>
+      <text x="192.5" y="113" font-size="12" fill="var(--muted)" text-anchor="end">−0.072</text>
+      <text x="541.1" y="113" font-size="12" fill="var(--muted)">0.082</text></g>
+      </svg></div>
+      <figcaption>Lift coefficient range over each shedding cycle, read from the Fluent time histories. The stalled front wing keeps a small, steady positive lift. The rear wing swings through zero every cycle, so on average it carries almost none.</figcaption>
+    </figure>
+
+    <div class="findings">
+      <div>
+        <h3>What we found</h3>
+        <ul>
+          <li><strong>Front airfoil lift oscillates between C<sub>L</sub> ≈ 0.103 and 0.133</strong>, with periodic vortex shedding consistent with a Strouhal number near 0.2.</li>
+          <li><strong>Front drag settles into a cycle between C<sub>D</sub> ≈ 0.021 and 0.031</strong>, matching alternating shedding from the stalled leading edge.</li>
+          <li><strong>The rear airfoil loses its effective angle of attack</strong> in the impinging wake, so its time-averaged lift is negligible.</li>
+          <li><strong>The Transition SST model with the Kato-Launder correction captured the unsteady, separated flow.</strong> Residuals settle into a stable limit cycle at the shedding frequency rather than failing to converge.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What's next</h3>
+        <ul>
+          <li><strong>Sweep the spacing</strong> from X/c = 0.1 to 1.0 to map the full buffeting landscape.</li>
+          <li><strong>Run RMS analysis</strong> on the C<sub>L</sub> histories to measure buffeting amplitude at each spacing.</li>
+          <li><strong>Apply FFT analysis</strong> to find the dominant buffeting frequencies and Strouhal number trends.</li>
+          <li><strong>Identify the spacing thresholds</strong> that minimize wake-induced buffeting for tandem drone and aircraft layouts.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="work" aria-labelledby="pump-h">
+    <div class="project">
+      <div class="copy">
+        <p class="kicker" style="margin:0">Engineering intern (reliability), International Paper, Rome GA, summer 2026</p>
+        <h2 id="pump-h" style="font-size:clamp(32px,4.4vw,52px)">The Elephant Pump water filtration project</h2>
+        <p class="prose">I led this project end to end, from scoping the system to getting it installed on budget.</p>
+        <ul>
+          <li><strong>Scoped the filtration system</strong> and evaluated bids from 5 contractors.</li>
+          <li><strong>Negotiated pricing</strong> and delivered the $12K project on budget.</li>
+          <li>Used SAP (CMMS) and Power BI to manage PM schedules and redesign reliability dashboards, improving visibility into maintenance compliance.</li>
+          <li>Supported outage planning and root cause failure analysis on rotating equipment, working hands-on with industrial pumps, fluid systems and P&amp;IDs.</li>
+        </ul>
+        <div class="chips"><span class="chip">Project management</span><span class="chip">Contractor bids</span><span class="chip">SAP (CMMS)</span><span class="chip">Power BI</span><span class="chip">RCFA</span></div>
+      </div>
+      <div class="pair stagger">
+        <figure class="shot">
+          <div class="ph"><img data-zoom src="img/pump-before.webp" width="818" height="1092" loading="lazy" alt="The Elephant Pump unit before the project, with its original piping"></div>
+          <figcaption><span class="tag-ba before">Before</span>The unit with its original piping.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="ph"><img data-zoom src="img/pump-after.webp" width="1000" height="1333" loading="lazy" alt="The Elephant Pump after the project, with new stainless steel filtration piping, valves and strainers installed"></div>
+          <figcaption><span class="tag-ba after">After</span>New filtration piping, valves and strainers installed.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="flight" aria-labelledby="flight-h">
+    <div class="project flip">
+      <div class="copy">
+        <p class="kicker" style="margin:0">Eagles of America, since May 2024</p>
+        <h2 id="flight-h" style="font-size:clamp(32px,4.4vw,52px)">FAA private pilot</h2>
+        <p class="prose">I earned my Private Pilot certificate in August 2026 after more than 75 hours of flight time, applying FAA navigation, meteorology and safety regulations in real operations. Now I'm training for my instrument rating, flying with Eagles of America and in independent rental aircraft.</p>
+        <dl class="logbook" style="margin:0">
+          <div><dt>Certificate</dt><dd>Private pilot</dd></div>
+          <div><dt>Earned</dt><dd>Aug 2026</dd></div>
+          <div><dt>Next rating</dt><dd>Instrument</dd></div>
+        </dl>
+      </div>
+      <div class="pair stagger">
+        <figure class="shot">
+          <div class="ph"><img data-zoom src="img/solo-day.webp" width="818" height="1088" loading="lazy" alt="Ayush standing on the ramp with his flight instructor in front of a training aircraft"></div>
+          <figcaption><b>Right after my first solo</b>, on the ramp with my instructor.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="ph"><img data-zoom src="img/cockpit.webp" width="598" height="1086" loading="lazy" alt="View from the left seat of a Cessna Skyhawk in cruise above scattered clouds, hand on the yoke"></div>
+          <figcaption><b>Time building</b> in a Cessna Skyhawk.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="club" aria-labelledby="club-h">
+    <div class="project">
+      <div class="copy">
+        <p class="kicker" style="margin:0">President and founder, since September 2025</p>
+        <h2 id="club-h" style="font-size:clamp(32px,4.4vw,52px)">Aviation Club at KSU</h2>
+        <p class="prose">I founded Kennesaw State's first aviation club to bring together students who want to work in aerospace, fly, or both.</p>
+        <ul>
+          <li><strong>Wrote and ratified the club constitution</strong>, setting bylaws for governance, safety and university compliance.</li>
+          <li><strong>Coordinate partnerships</strong> with industry professionals and plan networking and educational events.</li>
+          <li><strong>Guide members</strong> toward internships, mentorships and certifications.</li>
+        </ul>
+      </div>
+      <div class="club-logo"><img src="img/club-logo.webp" width="800" height="745" loading="lazy" alt="Kennesaw State Aviation Club logo: a top-down propeller airplane over a gold circle"></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="app" aria-labelledby="app-h">
+    <div class="project flip">
+      <div class="copy">
+        <p class="kicker" style="margin:0">Personal project</p>
+        <h2 id="app-h" style="font-size:clamp(32px,4.4vw,52px)">Tiny Riddles</h2>
+        <p class="prose">A daily brain-teaser app for iPhone that I built with React Native and Expo and shipped to the App Store. It's deterministic and works fully offline, with logic and wordplay categories, three difficulty levels, hints, saved riddles and a daily streak.</p>
+        <p class="prose">I worked through release-blocking issues during TestFlight and App Store review with repeated rounds of testing.</p>
+        <div class="chips"><span class="chip">React Native</span><span class="chip">Expo</span><span class="chip">TestFlight</span><span class="chip">App Store</span></div>
+      </div>
+      <div class="phones">
+        <div class="phone"><img data-zoom src="img/riddles-1.webp" width="560" height="1214" loading="lazy" alt="Tiny Riddles start screen with a brain icon and a Start Riddle button"></div>
+        <div class="phone"><img data-zoom src="img/riddles-2.webp" width="560" height="1214" loading="lazy" alt="Tiny Riddles riddle screen with category and difficulty filters and an answer field"></div>
+        <div class="phone"><img data-zoom src="img/riddles-3.webp" width="560" height="1214" loading="lazy" alt="Tiny Riddles App Store listing by developer Ayush Patel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="experience" aria-labelledby="xp-h">
+    <div class="xp">
+      <div><h2 id="xp-h">Experience</h2></div>
+      <div class="xp-list">
+        <div class="xp-item"><span class="when">May – Aug 2026</span><div><h3>Engineering Intern (Reliability), International Paper</h3><p>Led the $12K Elephant Pump water filtration project. Managed PM schedules and redesigned reliability dashboards in SAP (CMMS) and Power BI. Supported outage planning and RCFA on rotating equipment.</p></div></div>
+        <div class="xp-item"><span class="when">May 2026 – now</span><div><h3>Licensed Real Estate Agent, Keller Williams</h3><p>Prospect sellers across Marietta and Kennesaw by cold calling expired and for-sale-by-owner listings. Prepare comparative market analyses and seller net sheets, and manage the lead pipeline in Command CRM and Excel.</p></div></div>
+        <div class="xp-item"><span class="when">Sep 2025 – now</span><div><h3>Undergraduate Researcher, Kennesaw State University</h3><p>CFD study of wake-induced buffeting on tandem NACA 0012 airfoils in ANSYS Fluent.</p></div></div>
+        <div class="xp-item"><span class="when">Sep 2025 – now</span><div><h3>President and Founder, Aviation Club at KSU</h3><p>Founded the university's first aviation club, wrote its constitution, and run industry partnerships and events.</p></div></div>
+        <div class="xp-item"><span class="when">May 2024 – now</span><div><h3>Private Pilot, Eagles of America</h3><p>Private Pilot certificate earned August 2026 with 75+ flight hours. Instrument rating in training.</p></div></div>
+      </div>
+    </div>
+
+    <div class="skills">
+      <div><h3>Engineering</h3><ul><li>ANSYS Fluent</li><li>SolidWorks</li><li>MATLAB</li><li>Computational fluid dynamics</li><li>Numerical analysis</li></ul></div>
+      <div><h3>Operations and data</h3><ul><li>SAP (CMMS)</li><li>Power BI</li><li>Excel</li><li>FAA regulations and flight operations</li><li>React Native</li></ul></div>
+      <div><h3>Professional</h3><ul><li>Project management</li><li>Negotiation</li><li>Client relations</li><li>Data analysis</li><li>Event coordination</li><li>Cross-functional collaboration</li></ul></div>
+    </div>
+
+    <div class="edu">
+      <h3>Kennesaw State University, Marietta GA</h3>
+      <span class="gpa">GPA 3.83 / 4.0</span>
+      <p>Bachelor of Science in Mechanical Engineering, expected May 2029. Coursework: Calculus I–III, Linear Algebra, Physics I and II, Chemistry I and II, Technical Computing (MATLAB), Engineering Graphics (SOLIDWORKS), Intro to Flight.</p>
+    </div>
+  </section>
+
+  <section class="wrap contact" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Let's talk about summer 2027.</h2>
+    <p class="prose" style="margin-top:18px">I'm open to internships in aerospace engineering, aviation operations and aviation business.</p>
+    <div class="contact-lines">
+      <div class="cline"><span class="k">Email</span><span class="v" id="em">ayush.patel.business@outlook.com</span><button class="copy-btn" type="button" data-copy="em">Copy email</button></div>
+      <div class="cline"><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/ayushpatel02" target="_blank" rel="noopener">linkedin.com/in/ayushpatel02</a></div>
+    </div>
+  </section>
+</main>
+
+<dialog class="lb" id="lb" aria-label="Enlarged image">
+  <img id="lb-img" src="" alt="">
+  <div class="lb-bar"><p id="lb-cap"></p><button class="btn sm" type="button" id="lb-close">Close</button></div>
+</dialog>
+
+<footer><div class="wrap"><span>Ayush Patel, Marietta GA</span><span>Updated October 2026</span></div></footer>
+
+<script>
+(function () {
+  /* ---------- Figure tabs ---------- */
+  var plots = [
+    ["img/cfd-cl-back.webp", 726, "Lift coefficient time history for the rear airfoil", "The rear airfoil buffets hard and symmetrically, with C<sub>L</sub> swinging from −0.072 to +0.082 around a near-zero mean. At this spacing the wake wipes out its lift."],
+    ["img/cfd-cl-front.webp", 712, "Lift coefficient time history for the front airfoil", "After the startup transient, front airfoil lift settles into a regular oscillation between C<sub>L</sub> ≈ 0.103 and 0.133, consistent with Kármán vortex shedding at stall."],
+    ["img/cfd-cd-front.webp", 716, "Drag coefficient time history for the front airfoil", "Front airfoil drag cycles between C<sub>D</sub> ≈ 0.021 and 0.031, consistent with alternating vortex shedding from the stalled leading-edge separation bubble."],
+    ["img/cfd-mesh.webp", 866, "Structured C-H hybrid mesh around the tandem airfoils", "Structured C-H hybrid mesh. Boundary-layer inflation and wake refinement zones capture the shear-layer instability and vortex shedding."],
+    ["img/cfd-residuals.webp", 730, "Solver residuals for all transport equations", "Residuals oscillate at the vortex-shedding frequency. That's the physics of an unsteady flow settling into a stable limit cycle, not a convergence failure."]
+  ];
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var img = document.getElementById("plotimg"), cap = document.getElementById("plotcap"), panel = document.getElementById("plotpanel");
+  function select(i, focus) {
+    tabs.forEach(function (t, j) { t.setAttribute("aria-selected", j === i ? "true" : "false"); t.tabIndex = j === i ? 0 : -1; });
+    var p = plots[i]; img.src = p[0]; img.height = p[1]; img.alt = p[2]; cap.innerHTML = p[3];
+    panel.setAttribute("aria-labelledby", tabs[i].id);
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.tabIndex = i === 0 ? 0 : -1;
+    t.addEventListener("click", function () { select(i); });
+    t.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); select((i + 1) % tabs.length, true); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); select((i - 1 + tabs.length) % tabs.length, true); }
+    });
+  });
+
+  /* ---------- Lightbox ---------- */
+  var lb = document.getElementById("lb"), lbImg = document.getElementById("lb-img"), lbCap = document.getElementById("lb-cap");
+  document.querySelectorAll("img[data-zoom]").forEach(function (im) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "zoom"; b.setAttribute("aria-label", "Enlarge image: " + im.alt);
+    im.parentNode.insertBefore(b, im); b.appendChild(im);
+    b.addEventListener("click", function () {
+      lbImg.src = im.currentSrc || im.src; lbImg.alt = im.alt; lbCap.textContent = im.alt;
+      b.setAttribute("aria-label", "Enlarge image: " + im.alt);
+      if (lb.showModal) lb.showModal(); else lb.setAttribute("open", "");
+    });
+  });
+  document.getElementById("lb-close").addEventListener("click", function () { lb.close(); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+
+  /* ---------- Sticky nav state ---------- */
+  var nav = document.getElementById("navbar");
+  function onScroll() { nav.classList.toggle("solid", window.scrollY > 40); }
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  var links = Array.prototype.slice.call(nav.querySelectorAll("nav a"));
+  var map = { selected: "selected", research: "research", work: "selected", club: "selected", app: "selected", flight: "flight", experience: "experience" };
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var key = map[e.target.id];
+        links.forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("href") === "#" + key ? "true" : "false"); });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+  }
+
+  /* ---------- Copy email ---------- */
+  document.querySelectorAll(".copy-btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var target = document.getElementById(b.dataset.copy), text = target.textContent;
+      function selectIt() { var r = document.createRange(); r.selectNodeContents(target); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected, press Ctrl+C"; }
+      try { navigator.clipboard.writeText(text).then(function () { b.textContent = "Copied"; }, selectIt); } catch (e) { selectIt(); }
+    });
+  });
+
+  /* ---------- Hero airflow ----------
+     Illustrative particle flow past two NACA 0012 airfoils in tandem (front at 14°, rear at 0°,
+     one chord apart), colored with the jet scale Fluent uses for velocity magnitude.
+     Doublet + bound vortex per airfoil and an oscillating wake behind the stalled front wing. */
+  var cv = document.getElementById("flow"), ctx = cv.getContext("2d");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var W = 0, H = 0, DPR = 1, U = 1.6, parts = [], bodies = [], t = 0, running = false, visible = true;
+  var mouse = { x: -9999, y: -9999, on: false };
+  var BG = "10,23,40";
+
+  function naca(c, aoa) {
+    var pts = [], n = 50, a = aoa * Math.PI / 180, up = [], lo = [];
+    for (var i = 0; i <= n; i++) {
+      var b = Math.PI * i / n, x = (1 - Math.cos(b)) / 2;
+      var yt = 0.6 * (0.2969 * Math.sqrt(x) - 0.1260 * x - 0.3516 * x * x + 0.2843 * x * x * x - 0.1015 * x * x * x * x);
+      up.push([x - 0.5, yt]); lo.push([x - 0.5, -yt]);
+    }
+    up.concat(lo.reverse()).forEach(function (p) {
+      pts.push([(p[0] * Math.cos(a) - p[1] * Math.sin(a)) * c, (p[0] * Math.sin(a) + p[1] * Math.cos(a)) * c]);
+    });
+    return pts;
+  }
+
+  function layout() {
+    var r = cv.getBoundingClientRect();
+    W = r.width; H = r.height; DPR = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    var narrow = W < 760;
+    var c = narrow ? W * 0.3 : Math.min(W * 0.17, 250);
+    var cx1 = narrow ? W * 0.24 : W * 0.47, cy = narrow ? H * 0.28 : H * 0.27;
+    var gap = 2 * c; // X/c = 1.0: one chord between trailing edge and next leading edge
+    bodies = [
+      { x: cx1, y: cy, c: c, aoa: 14, gamma: 1.0, shape: naca(c, 14) },
+      { x: cx1 + gap, y: cy + c * 0.12, c: c, aoa: 0, gamma: 0.15, shape: naca(c, 0) }
+    ];
+    U = Math.max(1.1, Math.min(2.2, W / 700));
+    var n = Math.min(2600, Math.round(W * H / 520));
+    parts = [];
+    for (var i = 0; i < n; i++) parts.push(spawn(true));
+    ctx.fillStyle = "rgb(" + BG + ")"; ctx.fillRect(0, 0, W, H);
+  }
+
+  function spawn(anywhere) {
+    return { x: anywhere ? Math.random() * W : -Math.random() * 40, y: Math.random() * H, age: Math.random() * 200 };
+  }
+
+  function vel(x, y) {
+    var u = U, v = 0, inside = false;
+    for (var k = 0; k < bodies.length; k++) {
+      var b = bodies[k], a = b.aoa * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a);
+      var dx = x - b.x, dy = y - b.y;
+      var xr = dx * ca + dy * sa, yr = -dx * sa + dy * ca;         // body frame (y down, nose up = rotate LE upward)
+      var A = b.c * 0.52, B = b.c * 0.09;
+      var X = xr / A, Y = yr / B, r2 = X * X + Y * Y;
+      if (r2 < 1) { inside = true; continue; }
+      var r4 = r2 * r2;
+      var du = -U * (X * X - Y * Y) / r4, dv = -U * 2 * X * Y / r4 * (B / A) * 2.2;
+      // bound circulation: faster over the top, slower underneath
+      var R2 = dx * dx + dy * dy + b.c * b.c * 0.05, G = b.gamma * U * b.c * 0.32 * Math.exp(-R2 / (b.c * b.c * 1.6));
+      u += -G * dy / R2; v += G * dx / R2 * 0.5;
+      // rotate perturbation back to world frame
+      u += du * ca - dv * sa; v += du * sa + dv * ca;
+    }
+    // wake behind the stalled front airfoil: velocity deficit + shedding vortices drifting downstream
+    var f = bodies[0], te = f.x + f.c * 0.5 * Math.cos(14 * Math.PI / 180), tey = f.y + f.c * 0.5 * Math.sin(14 * Math.PI / 180);
+    var s = x - te;
+    if (s > -f.c * 0.2) {
+      var yw = tey + s * 0.05, sig = f.c * 0.16 + s * 0.12;
+      var g = Math.exp(-Math.pow((y - yw) / sig, 2));
+      var grow = Math.min(1, Math.max(0, (s + f.c * 0.2) / f.c)) * Math.exp(-Math.max(0, s) / (W * 0.9));
+      u -= U * 0.62 * g * grow;
+      v += U * 0.95 * g * grow * Math.sin(s / (f.c * 0.42) - t * 0.11);
+      u += U * 0.35 * g * grow * Math.cos(s / (f.c * 0.42) - t * 0.11) * ((y - yw) / sig);
+    }
+    // cursor vortex
+    if (mouse.on) {
+      var mx = x - mouse.x, my = y - mouse.y, m2 = mx * mx + my * my + 900;
+      var str = 2600 * U;
+      u += -str * my / m2 / 60; v += str * mx / m2 / 60;
+    }
+    return [u, v, inside];
+  }
+
+  function jet(q) {
+    q = Math.max(0, Math.min(1, q));
+    var r = Math.min(4 * q - 1.5, -4 * q + 4.5), g = Math.min(4 * q - 0.5, -4 * q + 3.5), b = Math.min(4 * q + 0.5, -4 * q + 2.5);
+    return [Math.max(0, Math.min(1, r)) * 255 | 0, Math.max(0, Math.min(1, g)) * 255 | 0, Math.max(0, Math.min(1, b)) * 255 | 0];
+  }
+  var BUCKETS = 24, palette = [];
+  for (var i = 0; i < BUCKETS; i++) { var c = jet(i / (BUCKETS - 1)); palette.push("rgba(" + c[0] + "," + c[1] + "," + c[2] + ",0.85)"); }
+
+  function step(draw) {
+    t += 1;
+    var segs = []; for (var i = 0; i < BUCKETS; i++) segs.push([]);
+    for (var p = 0; p < parts.length; p++) {
+      var P = parts[p], V = vel(P.x, P.y);
+      if (V[2]) { parts[p] = spawn(false); continue; }
+      var nx = P.x + V[0], ny = P.y + V[1];
+      var sp = Math.sqrt(V[0] * V[0] + V[1] * V[1]) / U;          // 1.0 = freestream
+      var q = (sp - 0.25) / 1.35;
+      var bkt = Math.max(0, Math.min(BUCKETS - 1, Math.round(q * (BUCKETS - 1))));
+      if (draw) segs[bkt].push(P.x, P.y, nx, ny);
+      P.x = nx; P.y = ny; P.age++;
+      if (P.x > W + 10 || P.y < -20 || P.y > H + 20 || P.age > 900) parts[p] = spawn(false);
+    }
+    if (!draw) return;
+    ctx.lineWidth = 1.3; ctx.lineCap = "round";
+    for (var k = 0; k < BUCKETS; k++) {
+      var s = segs[k]; if (!s.length) continue;
+      ctx.strokeStyle = palette[k]; ctx.beginPath();
+      for (var j = 0; j < s.length; j += 4) { ctx.moveTo(s[j], s[j + 1]); ctx.lineTo(s[j + 2], s[j + 3]); }
+      ctx.stroke();
+    }
+  }
+
+  function drawBodies() {
+    bodies.forEach(function (b) {
+      ctx.beginPath();
+      b.shape.forEach(function (p, i) { i ? ctx.lineTo(b.x + p[0], b.y + p[1]) : ctx.moveTo(b.x + p[0], b.y + p[1]); });
+      ctx.closePath(); ctx.fillStyle = "#e9f0f7"; ctx.fill();
+    });
+  }
+
+  function frame() {
+    if (!running) return;
+    ctx.fillStyle = "rgba(" + BG + ",0.10)"; ctx.fillRect(0, 0, W, H);
+    step(true); drawBodies();
+    requestAnimationFrame(frame);
+  }
+  function start() { if (!running && visible && !document.hidden && !reduce) { running = true; requestAnimationFrame(frame); } }
+  function stop() { running = false; }
+
+  function still() {
+    // reduced motion: draw one settled frame of streaks
+    for (var i = 0; i < 60; i++) step(false);
+    for (var j = 0; j < 22; j++) { ctx.fillStyle = "rgba(" + BG + ",0.06)"; ctx.fillRect(0, 0, W, H); step(true); }
+    drawBodies();
+  }
+
+  layout();
+  if (reduce) still(); else { for (var w = 0; w < 40; w++) step(false); start(); }
+
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { layout(); if (reduce) still(); }, 150); });
+  document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; visible ? start() : stop(); }).observe(cv);
+  }
+  var hero = document.querySelector(".hero");
+  hero.addEventListener("pointermove", function (e) { var r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.on = true; });
+  hero.addEventListener("pointerleave", function () { mouse.on = false; });
+})();
+</script>
+
+</body>
+</html>
